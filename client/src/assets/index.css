@@ -1,0 +1,144 @@
+:root {
+  --dodo-orange: rgb(255, 105, 0);
+  --footer-top: rgb(24, 24, 24);
+  --footer-bottom: rgba(0, 0, 0, 0.2);
+  --border-radius: 0.25rem;
+  --dodo-orange-hover: rgb(232, 97, 0);
+  --order-btn: #EF0B1E;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/*
+#container-data {
+  display: none;
+} */
+
+a:hover:not(.btn) {
+  color: var(--dodo-orange) !important;
+  transition: all .3s;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1 1 auto;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.nav-link {
+  cursor: pointer;
+  color: #000;
+}
+
+.text-muted {
+  font-size: 0.5em;
+  font-weight: 400;
+  line-height: 1.667;
+  text-transform: none;
+}
+
+.bg-footer-top {
+  background-color: var(--footer-top);
+}
+
+.bg-footer-bottom {
+  background-color: var(--footer-bottom);
+}
+
+.card {
+  cursor: pointer;
+  border: none;
+  box-shadow: black;
+}
+
+.card-footer {
+  background-color: unset;
+}
+
+.card {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  /*box-shadow: 0 0 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);*/
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.card-title {
+  font-weight: 600;
+}
+
+.card-text {
+  font-size: 89%;
+}
+
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.card-img-top {
+  transition: 0.5s;
+  display: block;
+}
+
+.card-img-top:hover {
+  transform: scale(1.1);
+}
+
+.btn-primary {
+  background-color: var(--dodo-orange);
+  color: rgb(255, 255, 255);
+  padding: 8px 20px;
+  border-radius: 2rem;
+  border-color: unset;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:active:focus {
+  background-color: var(--dodo-orange-hover);
+  border-color: unset;
+  box-shadow: none;
+}
+
+.animate-bottom {
+  position: relative;
+  animation-name: animateBottom;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes animateBottom {
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes animateBottom {
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
