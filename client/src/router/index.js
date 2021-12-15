@@ -5,10 +5,11 @@ import Basket from '@/components/Basket'
 import Order from '@/components/Order'
 import Login from '@/components/Auth/Login'
 import Register from '@/components/Auth/Register'
+import store from '@/store';
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -35,7 +36,25 @@ export default new Router({
     {
       path: '/order',
       name: 'order',
-      component: Order
+      component: Order,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next();
+      return;
+    }
+    next('/login');
+  } else {
+    next();
+  }
+})
+
+
+export default router;

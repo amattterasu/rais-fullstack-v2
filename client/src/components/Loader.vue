@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters(["loading"])
@@ -20,7 +20,7 @@ export default {
   height: 160px;
   position: absolute;
   left: 45%;
-  top: 45%;
+  top: 35%;
   z-index: 999;
 }
 

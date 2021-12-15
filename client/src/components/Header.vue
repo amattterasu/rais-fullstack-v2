@@ -12,17 +12,37 @@
           </div>
         </router-link>
       </div>
-      <router-link :to="'/login'">
+      <router-link :to="'/login'"
+        v-if="!isLoggedIn"
+      >
         <i class="fas fa-door-open"></i>
         Войти
       </router-link>
+
+    <a @click="logout" v-else>
+       <i class="fas fa-user"></i>
+       Выйти
+    </a>
+
     </div>
   </header>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: 'v-header',
+  computed: {
+    ...mapGetters(["isLoggedIn"]),
+  },
+  methods: {
+    logout: function () {
+      this.$store.dispatch('logout')
+      .then(() => {
+        this.$router.push('/')
+      })
+    }
+  },
 }
 </script>
 
@@ -40,5 +60,9 @@ export default {
 header div:first-child {
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
+}
+
+a {
+  cursor: pointer;
 }
 </style>

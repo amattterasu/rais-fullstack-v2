@@ -1,4 +1,4 @@
-import { calculateAmount, calculateTotal, copyFunc } from "@/functions";
+import { calculateAmount, calculateTotal } from "@/functions";
 
 export default {
   ADD_ITEM: (state, item) => {
@@ -12,7 +12,6 @@ export default {
       state.cart = {...state.cart}
     }
     state.Total = calculateAmount(state.cart);
-    console.log(state.Total);
   },
   REMOVE_ITEM: (state, id) => {
     if (state.cart[id] && state.cart[id].qt > 0) {
@@ -22,21 +21,6 @@ export default {
     if (state.cart[id] && state.cart[id].qt === 0) {
       delete state.cart[id];
     }
-
-    state.Total = calculateAmount(state.cart);
-    state.TotalPositions = calculateTotal(state.cart);
-    // state.delItem = {};
-    // state.delItem = copyFunc(state.cart, state.delItem, item);
-    // delete state.cart[item];
-    // state.Total = calculateAmount(state.cart);
-    // state.TotalPositions = calculateTotal(state.cart);
-  },
-  CHENGE_QT: state => {
-    state.TotalPositions = calculateTotal(state.cart);
-    state.Total = calculateAmount(state.cart);
-  },
-  REVIVA: state => {
-    state.cart = Object.assign(state.delItem, state.cart);
     state.Total = calculateAmount(state.cart);
     state.TotalPositions = calculateTotal(state.cart);
   },
@@ -45,5 +29,17 @@ export default {
   },
   TOGGLE_LOADING: (state, isLoading) => {
     state.loading = isLoading;
+  },
+  AUTH_SUCCESS(state, token, user){
+    state.status = 'success';
+    state.token = token;
+    state.user = user;
+  },
+  AUTH_ERROR(state){
+    state.status = 'error';
+  },
+  LOGOUT(state){
+    state.status = '';
+    state.token = '';
   },
 };

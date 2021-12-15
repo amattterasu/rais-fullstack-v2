@@ -32,7 +32,7 @@ class UserController {
             response(
               302,
               {
-                message: `Пользователь с email ${r.email} уже зарегистрирован!`,
+                message: `Пользователь с email "${r.email}" уже зарегистрирован!`,
               },
               res
             );
@@ -81,7 +81,7 @@ class UserController {
           response(
             401,
             {
-              message: `Пользователь с email ${req.body.email} не найден!`,
+              message: `Пользователь с email "${req.body.email}" не найден!`,
             },
             res
           );

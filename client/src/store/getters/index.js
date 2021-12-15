@@ -4,5 +4,7 @@ export default {
   Total: ({ Total }) => Total,
   TotalPositions: ({ TotalPositions }) => TotalPositions,
   products: ({ products }) => products,
-  loading: ({loading}) => loading
+  loading: ({loading}) => loading,
+  isLoggedIn: ({ token }) => !!token,
+  authStatus: ({ status }) => status,
 };

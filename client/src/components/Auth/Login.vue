@@ -1,11 +1,12 @@
 <template>
   <div class="form-wrapper fadeInDown">
-    <div id="formContent">
+    <div v-if="!loading" id="formContent">
       <h1 class="mt-3">Вход на сайт</h1>
       <form @submit.prevent="login">
-        <input required  v-model="email" type="text"  name="login" placeholder="Логин">
-        <input required v-model="password" type="password"  name="login" placeholder="Пароль">
-        <button type="submit"> Войти</button>
+        <input required  v-model="email" type="email"  placeholder="Логин">
+        <input required v-model="password" type="password"  placeholder="Пароль">
+        <div v-if="errors" class="form-invalid">{{errors}}</div>
+        <button type="submit">Войти</button>
       </form>
       <div id="formFooter">
         <router-link class="underlineHover text-secondary" :to="'/register'">Регистрация</router-link>
@@ -15,23 +16,33 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   data(){
     return {
       email : "",
-      password : ""
+      password : "",
+      errors: ''
     }
   },
   methods: {
     login: function () {
-      let email = this.email;
-      let password = this.password;
-      console.log(email, password);
-    //   this.$store.dispatch('login', { email, password })
-    //  .then(() => this.$router.push('/'))
-    //  .catch(err => console.log(err))
+      this.errors = ''
+      const data = {
+        email: this.email,
+        password: this.password,
+
+      }
+      this.$store.dispatch('login', data)
+        .then(() => this.$router.push('/'))
+        .catch((err) => {
+          this.errors ='Неверный логин или пароль'
+        })
     }
-  }
+  },
+  computed: {
+    ...mapGetters(["loading"])
+  },
 }
 </script>
 

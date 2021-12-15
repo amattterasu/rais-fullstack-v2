@@ -20,7 +20,7 @@ router.get("/users", UserController.getAllUsers);
 router.get("/products", ProductsController.getAllProducts);
 
 // router.get("/send", (req, res) => {
-//   res.sendFile(path.join(path.resolve(), '', '123b.png'))
+//   res.sendFile(path.join(path.resolve(), '', '123.jpg'))
 // });
 
 router.post("/auth/register", UserController.register);
